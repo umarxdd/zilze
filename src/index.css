@@ -1,0 +1,42 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
+@import url(https://fonts.googleapis.com/css?family=Manjari:100,regular,700);
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* WebKit Browsers */
+/*::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0);
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary;
+  border-radius: 10px;
+}
+
+* {
+  @apply outline-primary;
+}
+
+body { */
+/* background: rgb(131, 131, 131); */
+/* font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
+}
+
+.active {
+  @apply text-primary;
+}
+
+.contact_inputs {
+  @apply w-full rounded-lg border border-secondary-100 p-3;
+}
+
+.clamp_p {
+  font-size: clamp(13px, 2vw, 1rem);
+}
+*/
