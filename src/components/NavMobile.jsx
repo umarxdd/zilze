@@ -5,6 +5,7 @@ import { IoSearch } from "react-icons/io5";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
+import { IoHeartOutline } from "react-icons/io5";
 
 const NavMobile = () => {
   const [isMenu, setIsMenu] = useState(false);
@@ -88,9 +89,12 @@ const NavMobile = () => {
             >
               <RxHamburgerMenu />
             </div>
-            <div className="text-3xl font-manjari font-bold">
+            <div className="text-3xl font-manjari font-bold flex">
               <span className="text-primary">N</span>eva
+              <IoHeartOutline className="text-primary" />
+              <span className="text-primary">Uma</span>r
             </div>
+
             <div className="text-primary text-3xl">
               <IoCartOutline />
             </div>

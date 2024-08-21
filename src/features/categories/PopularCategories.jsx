@@ -17,8 +17,8 @@ function PopularCategories() {
       </div>
       <hr className="border-b-1 border-red-300 mx-[2vw]" />
 
-      <div className="flex justify-center my-8">
-        <div className="flex gap-4">
+      <div className="flex justify-center my-8 mx-2">
+        <div className="flex gap-3">
           {categories?.map((cat) => {
             return (
               cat.fields.title != "New Arrivals" && (
