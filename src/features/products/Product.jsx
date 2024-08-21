@@ -91,7 +91,7 @@ function Product() {
                   <img
                     src={url1}
                     alt=""
-                    className="size-[18vw] rounded-lg"
+                    className="size-[4.5rem]  sm:size-20 rounded-lg"
                     onClick={() => {
                       setImgUrl(url1);
                     }}
@@ -99,7 +99,7 @@ function Product() {
                   <img
                     src={url2}
                     alt=""
-                    className="size-[18vw] rounded-lg"
+                    className="sm:size-20  size-[4.5rem] rounded-lg"
                     onClick={() => {
                       setImgUrl(url2);
                     }}
@@ -107,7 +107,7 @@ function Product() {
                   <img
                     src={url3}
                     alt=""
-                    className="size-[18vw] rounded-lg"
+                    className="sm:size-20 size-[4.5rem] rounded-lg"
                     onClick={() => {
                       setImgUrl(url3);
                     }}
@@ -115,7 +115,7 @@ function Product() {
                   <img
                     src={url4}
                     alt=""
-                    className="size-[18vw] rounded-lg"
+                    className="sm:size-20 size-[4.5rem] rounded-lg"
                     onClick={() => {
                       setImgUrl(url4);
                     }}
@@ -123,7 +123,7 @@ function Product() {
                   <img
                     src={url5}
                     alt=""
-                    className="size-[18vw] rounded-lg"
+                    className="sm:size-20 size-[4.5rem]  rounded-lg"
                     onClick={() => {
                       setImgUrl(url5);
                     }}
