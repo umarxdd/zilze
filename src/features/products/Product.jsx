@@ -87,11 +87,11 @@ function Product() {
             <h1>{productName}</h1>
             <div className="flex flex-col md:flex-row">
               <div className="flex md:flex-row gap-2 flex-col-reverse w-full">
-                <div className="flex gap-2 md:flex-col">
+                <div className="flex gap-[2vw] md:flex-col ">
                   <img
                     src={url1}
                     alt=""
-                    className="size-20 rounded-lg"
+                    className="size-[18vw] rounded-lg"
                     onClick={() => {
                       setImgUrl(url1);
                     }}
@@ -99,7 +99,7 @@ function Product() {
                   <img
                     src={url2}
                     alt=""
-                    className="size-20 rounded-lg"
+                    className="size-[18vw] rounded-lg"
                     onClick={() => {
                       setImgUrl(url2);
                     }}
@@ -107,7 +107,7 @@ function Product() {
                   <img
                     src={url3}
                     alt=""
-                    className="size-20 rounded-lg"
+                    className="size-[18vw] rounded-lg"
                     onClick={() => {
                       setImgUrl(url3);
                     }}
@@ -115,7 +115,7 @@ function Product() {
                   <img
                     src={url4}
                     alt=""
-                    className="size-20 rounded-lg"
+                    className="size-[18vw] rounded-lg"
                     onClick={() => {
                       setImgUrl(url4);
                     }}
@@ -123,7 +123,7 @@ function Product() {
                   <img
                     src={url5}
                     alt=""
-                    className="size-20 rounded-lg"
+                    className="size-[18vw] rounded-lg"
                     onClick={() => {
                       setImgUrl(url5);
                     }}
