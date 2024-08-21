@@ -89,10 +89,8 @@ const NavMobile = () => {
             >
               <RxHamburgerMenu />
             </div>
-            <div className="text-3xl font-manjari font-bold flex">
-              <span className="text-primary">N</span>eva
-              <IoHeartOutline className="text-primary" />
-              <span className="text-primary">Uma</span>r
+            <div className="text-3xl font-manjari font-bold ">
+              <span className="text-primary">Z</span>ilze
             </div>
 
             <div className="text-primary text-3xl">
