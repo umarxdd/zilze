@@ -37,6 +37,7 @@ function Product() {
       productPrice,
       productDiscount,
       productName,
+      categories,
       productImages: [
         {
           fields: {
@@ -79,55 +80,28 @@ function Product() {
     setImgUrl(images[(currentIndex - 1 + images.length) % images.length]);
   };
 
+  console.log(product);
   return (
     <>
       {!isLoading ? (
         <div className="">
           <div className="m-4">
-            <h1>{productName}</h1>
+            <h1>{`${categories[0]} / ${productName}`}</h1>
             <div className="flex flex-col md:flex-row">
               <div className="flex md:flex-row gap-2 flex-col-reverse w-full">
-                <div className="flex gap-[2vw] md:flex-col ">
-                  <img
-                    src={url1}
-                    alt=""
-                    className="size-[4.5rem]  sm:size-20 rounded-lg"
-                    onClick={() => {
-                      setImgUrl(url1);
-                    }}
-                  />
-                  <img
-                    src={url2}
-                    alt=""
-                    className="sm:size-20  size-[4.5rem] rounded-lg"
-                    onClick={() => {
-                      setImgUrl(url2);
-                    }}
-                  />
-                  <img
-                    src={url3}
-                    alt=""
-                    className="sm:size-20 size-[4.5rem] rounded-lg"
-                    onClick={() => {
-                      setImgUrl(url3);
-                    }}
-                  />
-                  <img
-                    src={url4}
-                    alt=""
-                    className="sm:size-20 size-[4.5rem] rounded-lg"
-                    onClick={() => {
-                      setImgUrl(url4);
-                    }}
-                  />
-                  <img
-                    src={url5}
-                    alt=""
-                    className="sm:size-20 size-[4.5rem]  rounded-lg"
-                    onClick={() => {
-                      setImgUrl(url5);
-                    }}
-                  />
+                <div className="flex gap-[1.8vw] md:flex-col ">
+                  {images.map((image, index) => {
+                    return (
+                      <img
+                        src={image}
+                        key={index}
+                        className="sm:size-20 size-[4.2rem]  rounded-lg"
+                        onClick={() => {
+                          setImgUrl(url5);
+                        }}
+                      />
+                    );
+                  })}
                 </div>
                 <div className="relative  ">
                   <img
