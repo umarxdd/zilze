@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 
-function Skeleton({ height, width }) {
+function Skeleton({ height, width, classes }) {
   return (
     <>
       <div
-        className="relative  rounded-2xl overflow-hidden bg-gray-200"
+        className={`relative  rounded-2xl overflow-hidden bg-gray-200 ${classes}`}
         style={{ width, height }}
       >
         <motion.div
