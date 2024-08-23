@@ -1,5 +1,4 @@
 import { getProducts } from "../../services/apiData";
-import { useState, useEffect } from "react";
 import ProductsPreview from "./ProductsPreview";
 import { useQuery } from "react-query";
 import Skeleton from "../../components/Skeleton";
@@ -20,10 +19,12 @@ function ProductsGrid({ title }) {
           ))
         ) : (
           <>
-            {Array(10)
+            {Array(6)
               .fill()
               .map((_, index) => (
-                <Skeleton classes="size-[44vw] sm:size-[30vw] md:size-[22.5vw] rounded-xl lg:size-[18.5vw] " />
+                <div className="" key={index}>
+                  <Skeleton classes="size-[44vw] sm:size-[30vw] md:size-[22.5vw] rounded-xl lg:size-[18.5vw] " />
+                </div>
               ))}
           </>
         )}
