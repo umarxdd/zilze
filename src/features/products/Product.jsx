@@ -89,7 +89,7 @@ function Product() {
             <h1>{`${categories[0]} / ${productName}`}</h1>
             <div className="flex flex-col md:flex-row">
               <div className="flex md:flex-row gap-2 flex-col-reverse w-full">
-                <div className="flex gap-[1.8vw] md:flex-col ">
+                <div className="flex gap-[1.9vw] md:flex-col ">
                   {images.map((image, index) => {
                     return (
                       <img
