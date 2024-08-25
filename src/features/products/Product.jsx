@@ -3,6 +3,7 @@ import { getProducts } from "../../services/apiData";
 import { useState, useEffect } from "react";
 import { SlArrowRightCircle, SlArrowLeftCircle } from "react-icons/sl";
 import { useQuery } from "react-query";
+import Skeleton from "../../components/Skeleton";
 
 function Product() {
   const {
@@ -80,6 +81,12 @@ function Product() {
     setImgUrl(images[(currentIndex - 1 + images.length) % images.length]);
   };
 
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  const handleLoad = () => {
+    setImageLoaded(true);
+  };
+
   console.log(product);
   return (
     <>
@@ -92,22 +99,36 @@ function Product() {
                 <div className="flex gap-[1.9vw] md:flex-col ">
                   {images.map((image, index) => {
                     return (
-                      <img
-                        src={image}
-                        key={index}
-                        className="sm:size-20 size-[4.2rem]  rounded-lg"
-                        onClick={() => {
-                          setImgUrl(url5);
-                        }}
-                      />
+                      <>
+                        {!imageLoaded && (
+                          <>
+                            <Skeleton classes="sm:size-20 size-[4.2rem]  rounded-lg" />
+                          </>
+                        )}
+                        <img
+                          src={image}
+                          key={index}
+                          className="sm:size-20 size-[4.2rem]  rounded-lg"
+                          onClick={() => {
+                            setImgUrl(images[index]);
+                          }}
+                          onLoad={handleLoad}
+                        />
+                      </>
                     );
                   })}
                 </div>
                 <div className="relative  ">
+                  {!imageLoaded && (
+                    <>
+                      <Skeleton classes="w-full h-full object-cover overflow-scroll rounded-lg" />
+                    </>
+                  )}
                   <img
                     src={imgUrl}
                     alt=""
                     className="w-full h-full object-cover overflow-scroll rounded-lg"
+                    onLoad={handleLoad}
                   />
                   <div className="text-2xl text-white">
                     <SlArrowLeftCircle

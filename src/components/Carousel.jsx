@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { getCoverPhotos } from "../services/apiData";
 import { useQuery } from "react-query";
-import axios from "axios";
 import Skeleton from "./Skeleton";
 
 function Carousel() {

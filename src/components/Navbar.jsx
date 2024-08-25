@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom";
 import { FaRegClock } from "react-icons/fa";
-import { IoCartOutline } from "react-icons/io5";
 import { IoSearch } from "react-icons/io5";
 import SearchBar from "./SearchBar";
+import Cart from "./Cart";
 
 const Navbar = () => {
   return (
@@ -44,7 +44,7 @@ function SearchCart() {
       <hr className="border-b-1 border-primary" />
       <div className="flex  gap-[5vw] justify-between my-5 h-7 items-center mx-4 ">
         <h1 className="text-3xl font-bold font-manjari h-6">
-          <span className="text-primary">N</span>eva
+          <span className="text-primary">Z</span>ilze
         </h1>
 
         <div className="flex justify-between flex-grow">
@@ -62,11 +62,7 @@ function SearchCart() {
           </div> */}
         </div>
 
-        <div className=" text-3xl text-primary">
-          <span>
-            <IoCartOutline />
-          </span>
-        </div>
+        <Cart />
       </div>
       <hr className="border-b-1 border-primary" />
     </>
