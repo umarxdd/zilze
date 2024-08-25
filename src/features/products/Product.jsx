@@ -21,6 +21,7 @@ function Product() {
   );
 
   const [imgUrl, setImgUrl] = useState(null);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
     setImgUrl(product?.fields.productImages[0].fields.file.url);
@@ -80,8 +81,6 @@ function Product() {
     const currentIndex = images.indexOf(imgUrl);
     setImgUrl(images[(currentIndex - 1 + images.length) % images.length]);
   };
-
-  const [imageLoaded, setImageLoaded] = useState(false);
 
   const handleLoad = () => {
     setImageLoaded(true);

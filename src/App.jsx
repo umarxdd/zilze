@@ -12,6 +12,7 @@ import SearchedProducts from "./features/products/SearchedProducts";
 import RecentlyViewedProducts from "./features/products/RecentlyViewedProducts";
 import Category from "./features/categories/Category";
 import Skeleton from "./components/Skeleton";
+import NotFound from "./components/NotFound";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             />
           </Route>
           <Route path="/skeleton" element={<Skeleton size={20} />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </>
