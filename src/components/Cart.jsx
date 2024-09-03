@@ -88,7 +88,7 @@ const Cart = () => {
             className="bg-black bg-opacity-30 h-full w-[30vw] sm:w-full"
             onClick={() => setIsOpen(false)}
           ></div>
-          <div className="bg-white h-full w-full sm:w-[55rem] py-4">
+          <div className="bg-white h-full sm:w-[55rem] w-full py-4">
             <div className="flex justify-between px-4 text-xl font-extrabold  font-manjari">
               <h1 className="">Shopping Cart</h1>
               <div
@@ -122,7 +122,7 @@ const Cart = () => {
                             />
                             <div className="flex-grow">
                               <div className="flex flex-col">
-                                <h1 className="truncate w-56 text-lg font-semibold text-gray-700">
+                                <h1 className="truncate max-w-[37vw] sm:max-w-[12rem] text-lg font-semibold text-gray-700">
                                   {prod.name}
                                 </h1>
                                 <div className="text-gray-500">
