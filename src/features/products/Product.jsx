@@ -1,11 +1,14 @@
 import { useParams } from "react-router-dom";
 import { getProducts } from "../../services/apiData";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import ProdContext from "../../components/ProductsContext";
 import { SlArrowRightCircle, SlArrowLeftCircle } from "react-icons/sl";
 import { useQuery } from "react-query";
 import Skeleton from "../../components/Skeleton";
 
 function Product() {
+  const { addItem, getItem, removeItem } = useContext(ProdContext);
+
   const {
     data: products,
     error,
@@ -86,13 +89,28 @@ function Product() {
     setImageLoaded(true);
   };
 
+  const handleIncrease = () => {
+    setNum((n) => n + 1);
+    // changeNumProd(getNumProd() + 1);
+    addItem(productName, 1);
+  };
+
+  const handleDecrease = () => {
+    setNum((n) => (n == 0 ? n : n - 1));
+    removeItem(productName);
+    // changeNumProd(getNumProd() - 1);
+  };
+
   console.log(product);
   return (
     <>
       {!isLoading ? (
         <div className="">
           <div className="m-4">
-            <h1>{`${categories[0]} / ${productName}`}</h1>
+            <div className="flex">
+              <h1 className="mb-2">{`${categories[0]}  `}</h1>
+              <h1 className="text-gray-500"> / {`${productName}`}</h1>
+            </div>
             <div className="flex flex-col md:flex-row">
               <div className="flex md:flex-row gap-2 flex-col-reverse w-full">
                 <div className="flex gap-[1.9vw] md:flex-col ">
@@ -142,7 +160,7 @@ function Product() {
                 </div>
               </div>
 
-              <div className="mt-4 sm:mt-0 ml-0 sm:ml-4 sw-full flex flex-col gap-3 md:gap-4 lg:w-full ">
+              <div className="mt-4 md:mt-0 ml-0 md:ml-4 w-full flex flex-col gap-3 md:gap-4 lg:w-full">
                 {productDiscount && (
                   <h1 className="bg-primary text-white rounded-xl w-12 pl-1">
                     -{productDiscount}%
@@ -170,18 +188,14 @@ function Product() {
                   <div className="bg-gray-200 rounded-3xl items-center px-3 text-2xl flex justify-between text-black w-1/3  border-primary border-[1px] ">
                     <div
                       className="hover:cursor-pointer"
-                      onClick={() => {
-                        setNum((n) => (n == 0 ? n : n - 1));
-                      }}
+                      onClick={handleDecrease}
                     >
                       -
                     </div>
                     <div className="">{num}</div>
                     <div
                       className="hover:cursor-pointer"
-                      onClick={() => {
-                        setNum((n) => n + 1);
-                      }}
+                      onClick={handleIncrease}
                     >
                       +
                     </div>

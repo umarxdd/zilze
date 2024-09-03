@@ -9,6 +9,7 @@ import Cart from "./Cart";
 
 const NavMobile = () => {
   const [isMenu, setIsMenu] = useState(false);
+  const list = ["Home", "About", "Contact", "policies"];
 
   useEffect(() => {
     if (isMenu) {
@@ -25,52 +26,21 @@ const NavMobile = () => {
   return (
     <>
       {isMenu && (
-        <div className=" fixed left-0 top-0 w-full h-[100vh] z-20 flex border-black border-2">
+        <div className=" fixed left-0 top-0 w-full h-[100vh] z-20 flex border-black border-1">
           <div className="w-[70vw] bg-white p-6 flex flex-col gap-4">
-            <div className="">
-              <Link
-                to="/home"
-                onClick={() => {
-                  setIsMenu(false);
-                }}
-              >
-                Home
-              </Link>
-              <hr className="border-b-1 border-secondary-100 mt-4" />
-            </div>
-            <div className="">
-              <Link
-                to="/about"
-                onClick={() => {
-                  setIsMenu(false);
-                }}
-              >
-                About
-              </Link>
-              <hr className="border-b-1 border-secondary-100 mt-4" />
-            </div>
-            <div className="">
-              <Link
-                to="/contact"
-                onClick={() => {
-                  setIsMenu(false);
-                }}
-              >
-                Contact
-              </Link>
-              <hr className="border-b-1 border-secondary-100 mt-4" />
-            </div>
-            <div className="">
-              <Link
-                to="/policies"
-                onClick={() => {
-                  setIsMenu(false);
-                }}
-              >
-                Policies
-              </Link>
-              <hr className="border-b-1 border-secondary-100 mt-4" />
-            </div>
+            {list.map((item, index) => (
+              <div className="" key={index}>
+                <Link
+                  to={item.toLowerCase()}
+                  onClick={() => {
+                    setIsMenu(false);
+                  }}
+                >
+                  {item}
+                </Link>
+                <hr className="border-b-1 border-secondary-100 mt-4" />
+              </div>
+            ))}
           </div>
           <div
             className="w-[30vw] bg-black bg-opacity-50"

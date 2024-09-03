@@ -14,30 +14,34 @@ import Category from "./features/categories/Category";
 import Skeleton from "./components/Skeleton";
 import NotFound from "./components/NotFound";
 
+import { ProdProvider } from "./components/ProductsContext";
+
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<AppLayout />}>
-            <Route index element={<Home />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/policies" element={<Policies />} />
-            <Route path="/categories/:slug" element={<Category />} />
-            <Route path="/products/:slug" element={<Product />} />
-            <Route path="/search" element={<SearchedProducts />} />
-            <Route
-              path="/viewedProducts"
-              element={<RecentlyViewedProducts />}
-            />
-          </Route>
-          <Route path="/skeleton" element={<Skeleton size={20} />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <ProdProvider>
+        <BrowserRouter>
+          <ScrollToTop />
+          <Routes>
+            <Route path="/" element={<AppLayout />}>
+              <Route index element={<Home />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/policies" element={<Policies />} />
+              <Route path="/categories/:slug" element={<Category />} />
+              <Route path="/products/:slug" element={<Product />} />
+              <Route path="/search" element={<SearchedProducts />} />
+              <Route
+                path="/viewedProducts"
+                element={<RecentlyViewedProducts />}
+              />
+            </Route>
+            <Route path="/skeleton" element={<Skeleton size={20} />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </ProdProvider>
     </>
   );
 }
