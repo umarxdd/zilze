@@ -117,7 +117,7 @@ const Cart = () => {
                         >
                           <div className="flex justify-between gap-2">
                             <img
-                              className="size-[14vw] rounded-xl object-cover"
+                              className="size-[15vw] sm:w-24 sm:h-24 rounded-xl object-cover"
                               src={prod.image}
                             />
                             <div className="flex-grow">
