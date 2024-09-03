@@ -7,7 +7,8 @@ import { getProducts } from "../services/apiData";
 import { useQuery } from "react-query";
 
 const Cart = () => {
-  const { haveItems, itemsLength, getAllItems } = useContext(ProdContext);
+  const { haveItems, itemsLength, getAllItems, removeItems } =
+    useContext(ProdContext);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -28,9 +29,11 @@ const Cart = () => {
     isLoading,
   } = useQuery(["products"], getProducts);
 
-  const cartProducts = products?.filter((prod) => {
-    return getAllItems().some((item) => item.title === prod.fields.productName);
-  });
+  const cartProducts = getAllItems();
+
+  // const cartProducts = products?.filter((prod) => {
+  //   return getAllItems().some((item) => item.title === prod.fields.productName);
+  // });
   // if (!products)
   //   return (
   //     <div className="text-4xl flex justify-center items-center h-screen w-screen">
@@ -74,7 +77,9 @@ const Cart = () => {
   //   },
   // } = product;
 
-  const deleteProduct = () => {};
+  const deleteProduct = (name) => {
+    removeItems(name);
+  };
   return (
     <>
       {isOpen && (
@@ -105,21 +110,37 @@ const Cart = () => {
                 <>
                   {cartProducts.map((prod, index) => (
                     <>
-                      <div className="mx-2 my-4" key={index}>
-                        <div className="flex justify-between gap-2">
-                          <img
-                            className="size-[15vw] rounded-xl"
-                            src={prod.fields.productImages[0].fields.file.url}
-                          />
-                          <div className="truncate flex-grow">
-                            <h1>{prod.fields.productName}</h1>
-                            <span>Rs.{prod.fields.productPrice}</span>
-                          </div>
-                          <div
-                            className="text-xl text-gray-500"
-                            onClick={deleteProduct}
-                          >
-                            <MdDelete />
+                      <div className="px-3 py-4">
+                        <div
+                          className="shadow-lg rounded-lg p-2 hover:shadow-xl transition-shadow duration-300"
+                          key={index}
+                        >
+                          <div className="flex justify-between gap-2">
+                            <img
+                              className="size-[14vw] rounded-xl object-cover"
+                              src={prod.image}
+                            />
+                            <div className="flex-grow">
+                              <div className="flex flex-col">
+                                <h1 className="truncate w-56 text-lg font-semibold text-gray-700">
+                                  {prod.name}
+                                </h1>
+                                <div className="text-gray-500">
+                                  <span className="text-sm ">Rs.</span>
+                                  <span className="text-primary text-sm font-semibold">
+                                    {prod.price}
+                                  </span>
+                                </div>
+                                <span className="text-sm text-gray-500 font-semibold">
+                                  Amount: {prod.amount}
+                                </span>
+                              </div>
+                            </div>
+                            <div className="text-2xl text-gray-500 hover:text-red-600 cursor-pointer">
+                              <MdDelete
+                                onClick={() => deleteProduct(prod.name)}
+                              />
+                            </div>
                           </div>
                         </div>
                       </div>

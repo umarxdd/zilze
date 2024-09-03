@@ -4,15 +4,46 @@ const ProdContext = createContext();
 
 export const ProdProvider = ({ children }) => {
   const [items, setItems] = useState([]);
-  const addItem = (title, amount) => {
-    setItems([...items, { id: items.length, title, amount }]);
+  const addItem = (name, price, image, amount) => {
+    const exists = items.find((item) => item.name === name);
+    if (!exists) {
+      setItems([...items, { id: items.length, name, price, image, amount }]);
+    } else {
+      const updatedItems = items.map((item) => {
+        if (item.name === name) {
+          return { ...item, amount: item.amount + 1 };
+        }
+        return item;
+      });
+
+      setItems(updatedItems);
+    }
   };
   const getItem = (id) => {
     return items.find((item) => item.id == id);
   };
-  const removeItem = (name) => {
-    setItems(items.filter((item) => item.title !== name));
+  const removeItems = (name) => {
+    setItems(items.filter((item) => item.name !== name));
   };
+  const removeOneItem = (name) => {
+    let item = items.find((item) => item.name === name);
+    if (item.amount > 1) {
+      const updatedItems = items.map((item) => {
+        if (item.name === name) {
+          return { ...item, amount: item.amount - 1 };
+        }
+        return item;
+      });
+
+      setItems(updatedItems);
+    } else {
+      const index = items.findIndex((item) => item.name === name);
+      if (index > -1) {
+        setItems([...items.slice(0, index), ...items.slice(index + 1)]);
+      }
+    }
+  };
+
   const getAllItems = () => {
     return items;
   };
@@ -25,7 +56,8 @@ export const ProdProvider = ({ children }) => {
       value={{
         addItem,
         getItem,
-        removeItem,
+        removeOneItem,
+        removeItems,
         haveItems,
         itemsLength,
         getAllItems,

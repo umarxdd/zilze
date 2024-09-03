@@ -7,7 +7,7 @@ import { useQuery } from "react-query";
 import Skeleton from "../../components/Skeleton";
 
 function Product() {
-  const { addItem, getItem, removeItem } = useContext(ProdContext);
+  const { addItem, removeOneItem } = useContext(ProdContext);
 
   const {
     data: products,
@@ -91,14 +91,12 @@ function Product() {
 
   const handleIncrease = () => {
     setNum((n) => n + 1);
-    // changeNumProd(getNumProd() + 1);
-    addItem(productName, 1);
+    addItem(productName, productPrice, url1, 1);
   };
 
   const handleDecrease = () => {
     setNum((n) => (n == 0 ? n : n - 1));
-    removeItem(productName);
-    // changeNumProd(getNumProd() - 1);
+    removeOneItem(productName);
   };
 
   console.log(product);
