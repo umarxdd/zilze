@@ -7,8 +7,15 @@ import { getProducts } from "../services/apiData";
 import { useQuery } from "react-query";
 
 const Cart = () => {
-  const { haveItems, itemsLength, getAllItems, removeItems } =
-    useContext(ProdContext);
+  const {
+    haveItems,
+    itemsLength,
+    getAllItems,
+    removeItems,
+    getItemAmount,
+    addItem,
+    removeOneItem,
+  } = useContext(ProdContext);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -80,6 +87,21 @@ const Cart = () => {
   const deleteProduct = (name) => {
     removeItems(name);
   };
+  const handleIncrease = (name, price, url) => {
+    addItem(name, price, url, 1);
+  };
+
+  const handleDecrease = (name) => {
+    removeOneItem(name);
+  };
+  const getTotalPrice = () => {
+    let price = 0;
+    getAllItems().forEach((item) => {
+      price += item.amount * item.price;
+    });
+
+    return price;
+  };
   return (
     <>
       {isOpen && (
@@ -88,7 +110,7 @@ const Cart = () => {
             className="bg-black bg-opacity-30 h-full w-[30vw] sm:w-full"
             onClick={() => setIsOpen(false)}
           ></div>
-          <div className="bg-white h-full sm:w-[55rem] w-full py-4">
+          <div className="bg-white h-full sm:w-[55rem] w-full py-4 relative ">
             <div className="flex justify-between px-4 text-xl font-extrabold  font-manjari">
               <h1 className="">Shopping Cart</h1>
               <div
@@ -108,51 +130,94 @@ const Cart = () => {
                 </div>
               ) : (
                 <>
-                  {cartProducts.map((prod, index) => (
-                    <>
-                      <div className="px-3 py-4">
-                        <div
-                          className="shadow-lg rounded-lg p-2 hover:shadow-xl transition-shadow duration-300"
-                          key={index}
-                        >
-                          <div className="flex justify-between gap-2">
-                            <img
-                              className="size-[15vw] sm:w-24 sm:h-24 rounded-xl object-cover"
-                              src={prod.image}
-                            />
-                            <div className="flex-grow">
-                              <div className="flex flex-col">
-                                <h1 className="truncate max-w-[37vw] sm:max-w-[12rem] text-lg font-semibold text-gray-700">
-                                  {prod.name}
-                                </h1>
-                                <div className="text-gray-500">
-                                  <span className="text-sm ">Rs.</span>
-                                  <span className="text-primary text-sm font-semibold">
-                                    {prod.price}
-                                  </span>
-                                </div>
-                                <span className="text-sm text-gray-500 font-semibold">
-                                  Amount: {prod.amount}
-                                </span>
-                              </div>
-                            </div>
-                            <div className="text-2xl text-gray-500 hover:text-red-600 cursor-pointer">
-                              <MdDelete
-                                onClick={() => deleteProduct(prod.name)}
+                  <div className="overflow-y-scroll h-[70vh] no-scrollbar">
+                    {cartProducts.map((prod, index) => (
+                      <>
+                        <div className="px-3 py-4 " key={index}>
+                          <div
+                            className="shadow-lg rounded-lg p-2 hover:shadow-xl transition-shadow duration-300"
+                            key={index}
+                          >
+                            <div className="flex justify-between gap-2">
+                              <img
+                                className="size-[15vw] sm:w-24 sm:h-24 rounded-xl object-cover"
+                                src={prod.image}
                               />
+                              <div className="flex-grow">
+                                <div className="flex flex-col justify-between h-full pb-2">
+                                  <h1 className="truncate max-w-[37vw] sm:max-w-[12rem] text-lg font-semibold text-gray-700">
+                                    {prod.name}
+                                  </h1>
+                                  <div className="text-gray-500">
+                                    <span className="text-sm ">Rs.</span>
+                                    <span className="text-primary text-sm font-semibold">
+                                      {prod.price * getItemAmount(prod.name)}
+                                    </span>
+                                  </div>
+
+                                  <div className="flex gap-2">
+                                    <div className="bg-gray-200 rounded-3xl items-center px-3 flex justify-between text-black w-1/3   border-[1px] ">
+                                      <div
+                                        className="hover:cursor-pointer"
+                                        onClick={() =>
+                                          handleDecrease(prod.name)
+                                        }
+                                      >
+                                        -
+                                      </div>
+
+                                      <div className="">
+                                        {getItemAmount(prod.name)}
+                                      </div>
+                                      <div
+                                        className="hover:cursor-pointer"
+                                        onClick={() =>
+                                          handleIncrease(
+                                            prod.name,
+                                            prod.price,
+                                            prod.image
+                                          )
+                                        }
+                                      >
+                                        +
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="text-2xl text-gray-500">
+                                <MdDelete
+                                  className=" hover:text-red-600 cursor-pointer"
+                                  onClick={() => deleteProduct(prod.name)}
+                                />
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <hr className="border-pink-200 border-1" />
-                    </>
-                  ))}
+                        <hr className="border-pink-200 border-1" />
+                      </>
+                    ))}
+                  </div>
                 </>
               )}
             </div>
+
+            {haveItems && (
+              <div className="bg-gray-200 h-[20vh] w-full absolute bottom-0 p-4 flex flex-col justify-between">
+                <div className="flex justify-between text-xl font-medium ">
+                  <span>Subtotal</span>
+                  <span>Rs.{getTotalPrice()}</span>
+                </div>
+                <div className="bg-primary text-white text-xl text-center rounded-2xl py-1 hover:scale-95 hover:cursor-pointer">
+                  checkout
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}
+
+      {/*  */}
       <div
         className="text-primary text-3xl relative"
         onClick={() => {

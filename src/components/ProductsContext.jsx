@@ -22,6 +22,17 @@ export const ProdProvider = ({ children }) => {
   const getItem = (id) => {
     return items.find((item) => item.id == id);
   };
+  const getItemAmount = (name) => {
+    const item = items.find((item) => item.name === name);
+    let amount;
+    if (item) {
+      amount = item.amount;
+    }
+    if (amount) {
+      return amount;
+    }
+    return 0;
+  };
   const removeItems = (name) => {
     setItems(items.filter((item) => item.name !== name));
   };
@@ -61,6 +72,7 @@ export const ProdProvider = ({ children }) => {
         haveItems,
         itemsLength,
         getAllItems,
+        getItemAmount,
       }}
     >
       {children}

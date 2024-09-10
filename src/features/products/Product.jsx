@@ -5,9 +5,11 @@ import ProdContext from "../../components/ProductsContext";
 import { SlArrowRightCircle, SlArrowLeftCircle } from "react-icons/sl";
 import { useQuery } from "react-query";
 import Skeleton from "../../components/Skeleton";
+import { GiEgyptianTemple } from "react-icons/gi";
 
 function Product() {
-  const { addItem, removeOneItem } = useContext(ProdContext);
+  const { addItem, removeOneItem, getItem, getItemAmount } =
+    useContext(ProdContext);
 
   const {
     data: products,
@@ -15,7 +17,6 @@ function Product() {
     isLoading,
   } = useQuery(["products"], getProducts);
 
-  const [num, setNum] = useState(0);
   const { slug } = useParams();
 
   console.log("the slug is ", slug);
@@ -90,12 +91,10 @@ function Product() {
   };
 
   const handleIncrease = () => {
-    setNum((n) => n + 1);
     addItem(productName, productPrice, url1, 1);
   };
 
   const handleDecrease = () => {
-    setNum((n) => (n == 0 ? n : n - 1));
     removeOneItem(productName);
   };
 
@@ -190,7 +189,8 @@ function Product() {
                     >
                       -
                     </div>
-                    <div className="">{num}</div>
+
+                    <div className="">{getItemAmount(productName)}</div>
                     <div
                       className="hover:cursor-pointer"
                       onClick={handleIncrease}
