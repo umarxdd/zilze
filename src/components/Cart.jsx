@@ -3,13 +3,11 @@ import { IoCartOutline } from "react-icons/io5";
 import { MdDelete } from "react-icons/md";
 import { useContext } from "react";
 import ProdContext from "./ProductsContext";
-import { getProducts } from "../services/apiData";
-import { useQuery } from "react-query";
+import { motion } from "framer-motion";
 
 const Cart = () => {
   const {
     haveItems,
-    itemsLength,
     getAllItems,
     removeItems,
     getItemAmount,
@@ -30,59 +28,7 @@ const Cart = () => {
     };
   }, [isOpen]);
 
-  const {
-    data: products,
-    error,
-    isLoading,
-  } = useQuery(["products"], getProducts);
-
   const cartProducts = getAllItems();
-
-  // const cartProducts = products?.filter((prod) => {
-  //   return getAllItems().some((item) => item.title === prod.fields.productName);
-  // });
-  // if (!products)
-  //   return (
-  //     <div className="text-4xl flex justify-center items-center h-screen w-screen">
-  //       Loading Data....
-  //     </div>
-  //   );
-
-  // const {
-  //   fields: {
-  //     productPrice,
-  //     productDiscount,
-  //     productName,
-  //     categories,
-  //     productImages: [
-  //       {
-  //         fields: {
-  //           file: { url: url1 },
-  //         },
-  //       },
-  //       {
-  //         fields: {
-  //           file: { url: url2 },
-  //         },
-  //       },
-  //       {
-  //         fields: {
-  //           file: { url: url3 },
-  //         },
-  //       },
-  //       {
-  //         fields: {
-  //           file: { url: url4 },
-  //         },
-  //       },
-  //       {
-  //         fields: {
-  //           file: { url: url5 },
-  //         },
-  //       },
-  //     ],
-  //   },
-  // } = product;
 
   const deleteProduct = (name) => {
     removeItems(name);
@@ -102,15 +48,33 @@ const Cart = () => {
 
     return price;
   };
+
+  const getTotalProducts = () => {
+    let t = 0;
+    getAllItems().forEach((item) => {
+      t += item.amount;
+    });
+
+    return t;
+  };
   return (
     <>
       {isOpen && (
-        <div className="fixed top-0 right-0 flex h-[100vh] w-full border-black border-2 z-30">
-          <div
+        <div className="fixed top-0 right-0 flex h-[100vh] w-full  z-30">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.2 }}
             className="bg-black bg-opacity-30 h-full w-[30vw] sm:w-full"
             onClick={() => setIsOpen(false)}
-          ></div>
-          <div className="bg-white h-full sm:w-[55rem] w-full py-4 relative ">
+          ></motion.div>
+
+          <motion.div
+            initial={{ x: "100vw" }}
+            animate={{ x: 0 }}
+            transition={{ duration: 0.2 }}
+            className="bg-white h-full sm:w-[55rem] w-full py-4 relative "
+          >
             <div className="flex justify-between px-4 text-xl font-extrabold  font-manjari">
               <h1 className="">Shopping Cart</h1>
               <div
@@ -203,7 +167,7 @@ const Cart = () => {
             </div>
 
             {haveItems && (
-              <div className="bg-gray-200 h-[20vh] w-full absolute bottom-0 p-4 flex flex-col justify-between">
+              <div className="bg-gray-200 h-[8rem] w-full absolute bottom-0 p-4 flex flex-col justify-between">
                 <div className="flex justify-between text-xl font-medium ">
                   <span>Subtotal</span>
                   <span>Rs.{getTotalPrice()}</span>
@@ -213,7 +177,7 @@ const Cart = () => {
                 </div>
               </div>
             )}
-          </div>
+          </motion.div>
         </div>
       )}
 
@@ -231,7 +195,7 @@ const Cart = () => {
             className="absolute top-[-0.5rem] right-[-0.5rem] px-1 flex  items-center justify-center rounded-xl bg-primary text-sm
         text-white"
           >
-            <span className="">{itemsLength}</span>
+            <span className="">{getTotalProducts()}</span>
           </div>
         </div>
       </div>

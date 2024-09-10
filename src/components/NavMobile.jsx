@@ -1,11 +1,11 @@
 // import { NavLink } from "react-router-dom";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { IoCartOutline } from "react-icons/io5";
 import { IoSearch } from "react-icons/io5";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import Cart from "./Cart";
+import { motion } from "framer-motion";
 
 const NavMobile = () => {
   const [isMenu, setIsMenu] = useState(false);
@@ -27,7 +27,12 @@ const NavMobile = () => {
     <>
       {isMenu && (
         <div className=" fixed left-0 top-0 w-full h-[100vh] z-20 flex border-black border-1">
-          <div className="w-[70vw] bg-white p-6 flex flex-col gap-4">
+          <motion.div
+            initial={{ x: "-100vw" }}
+            animate={{ x: 0 }}
+            transition={{ duration: 0.2 }}
+            className="w-[70vw] bg-white p-6 flex flex-col gap-4"
+          >
             {list.map((item, index) => (
               <div className="" key={index}>
                 <Link
@@ -41,11 +46,14 @@ const NavMobile = () => {
                 <hr className="border-b-1 border-secondary-100 mt-4" />
               </div>
             ))}
-          </div>
-          <div
-            className="w-[30vw] bg-black bg-opacity-50"
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.2 }}
+            className="w-[30vw] bg-black bg-opacity-50 "
             onClick={() => setIsMenu(false)}
-          ></div>
+          ></motion.div>
         </div>
       )}
       <div className="sticky top-0 z-10 bg-white pb-2 pt-[0.001rem]">

@@ -5,11 +5,10 @@ import ProdContext from "../../components/ProductsContext";
 import { SlArrowRightCircle, SlArrowLeftCircle } from "react-icons/sl";
 import { useQuery } from "react-query";
 import Skeleton from "../../components/Skeleton";
-import { GiEgyptianTemple } from "react-icons/gi";
+import { motion } from "framer-motion";
 
 function Product() {
-  const { addItem, removeOneItem, getItem, getItemAmount } =
-    useContext(ProdContext);
+  const { addItem, removeOneItem, getItemAmount } = useContext(ProdContext);
 
   const {
     data: products,
