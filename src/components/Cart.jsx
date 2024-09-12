@@ -73,7 +73,7 @@ const Cart = () => {
             initial={{ x: "100vw" }}
             animate={{ x: 0 }}
             transition={{ duration: 0.2 }}
-            className="bg-white h-full sm:w-[55rem] w-full py-4 relative "
+            className="bg-white h-full sm:w-[55rem] w-full pt-4 relative "
           >
             <div className="flex justify-between px-4 text-xl font-extrabold  font-manjari">
               <h1 className="">Shopping Cart</h1>
@@ -167,7 +167,7 @@ const Cart = () => {
             </div>
 
             {haveItems && (
-              <div className="bg-gray-200 p-4 flex flex-col justify-between gap-4">
+              <div className="bg-gray-200  absolute bottom-0 w-full p-4 flex flex-col justify-between gap-4">
                 <div className="flex justify-between text-xl font-medium ">
                   <span>Subtotal</span>
                   <span>Rs.{getTotalPrice()}</span>
