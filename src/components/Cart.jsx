@@ -167,7 +167,7 @@ const Cart = () => {
             </div>
 
             {haveItems && (
-              <div className="bg-gray-200 h-[8rem] w-full absolute bottom-0 p-4 flex flex-col justify-between">
+              <div className="bg-gray-200 p-4 flex flex-col justify-between gap-4">
                 <div className="flex justify-between text-xl font-medium ">
                   <span>Subtotal</span>
                   <span>Rs.{getTotalPrice()}</span>
