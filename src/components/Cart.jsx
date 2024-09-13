@@ -89,14 +89,14 @@ const Cart = () => {
               </div>
 
               <hr className="border-gray-300 my-2 border-1" />
-              <div className="">
+              <div className="flex-grow ">
                 {!haveItems ? (
                   <div className="text-center flex items-center justify-center relative">
                     <h1 className="absolute top-44">Your Cart Is Empty :'( </h1>
                   </div>
                 ) : (
                   <>
-                    <div className="overflow-y-scroll h-[67vh] no-scrollbar">
+                    <div className="overflow-y-scroll h-[67vh] no-scrollbar ">
                       {cartProducts.map((prod, index) => (
                         <>
                           <div className="px-3 py-4 " key={index}>
@@ -170,7 +170,7 @@ const Cart = () => {
               </div>
 
               {haveItems && (
-                <div className="bg-gray-200 flex-grow p-4 flex flex-col justify-between gap-4">
+                <div className="bg-gray-200 p-4 flex flex-col justify-between gap-4">
                   <div className="flex justify-between text-xl font-medium ">
                     <span>Subtotal</span>
                     <span>Rs.{getTotalPrice()}</span>
