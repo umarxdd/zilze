@@ -8,7 +8,8 @@ import Skeleton from "../../components/Skeleton";
 import { motion } from "framer-motion";
 
 function Product() {
-  const { addItem, removeOneItem, getItemAmount } = useContext(ProdContext);
+  const { addItem, removeOneItem, getItemAmount, showItemInCart } =
+    useContext(ProdContext);
 
   const {
     data: products,
@@ -90,13 +91,16 @@ function Product() {
   };
 
   const handleIncrease = () => {
-    addItem(productName, productPrice, url1, 1);
+    addItem(productName, productPrice, url1, 1, false);
   };
 
   const handleDecrease = () => {
     removeOneItem(productName);
   };
 
+  const addToCart = (name) => {
+    showItemInCart(name);
+  };
   console.log(product);
   return (
     <>
@@ -197,7 +201,12 @@ function Product() {
                       +
                     </div>
                   </div>
-                  <div className="bg-primary text-center py-3 text-white hover:scale-[1.01] rounded-3xl w-2/3">
+                  <div
+                    className="bg-primary text-center py-3 text-white hover:scale-[0.95] active:scale-100
+                    hover:cursor-pointer rounded-3xl w-2/3 transition-transform duration-300"
+                    onClick={() => addToCart(productName)}
+                    role="button"
+                  >
                     Add to Cart
                   </div>
                 </div>
